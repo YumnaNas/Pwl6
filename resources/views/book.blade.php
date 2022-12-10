@@ -44,8 +44,13 @@
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" id="btn-edit-buku" class="btn- btn-success" data-toggle="modal"
+                                    data-target="#editBukuModal" data-id="{{ $book->id}}">Edit</button>
+
+                                    <button type="button" id="btn-delete-buku" class="btn btn-danger">Hapus</button>
+                                    </button>
+    
                             </td>
                         </tr>
                     @endforeach
@@ -89,6 +94,60 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editBukuModal" tabindex="-1" 
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data Buku</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{{ route('admin.book.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method ('PATCH')
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="edit-judul">Judul Buku</label>
+                                        <input type="text" class="form-control" name="judul" id="edit-judul" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-penulis">Penulis</label>
+                            <input type="text" class="form-control" name="penulis" id="edit-penulis" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-tahun">Tahun</label>
+                            <input type="text" class="form-control" name="tahun" id="edit-tahun" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-penerbit">Penerbit</label>
+                            <input type="text" class="form-control" name="penerbit" id="edit-penerbit" required/>
+                        </div>
+                            </div>
+                        <div class="col-md-6">
+                            <div class="form-group"> id="image-area"></div>
+                                <div class="form-group">
+                                    <label for="cover">Cover</label>
+                                        <input type="text" class="form-control" name="cover" id="edit-cover" required>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" id="edit-id"/>
+                            <input type="hidden" name="old_cover" id="edit-old-cover"/>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">update</button>
                 </form>
             </div>
         </div>

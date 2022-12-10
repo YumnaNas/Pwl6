@@ -44,4 +44,8 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])
         ->name('home')
         ->middleware('auth');
+Route::patch('admin/books/update', [App\Http\Controllers\
+AdminController::class, 'update_book'])
+            ->name('admin.book.update')
+            ->middleware('is_admin');
 
